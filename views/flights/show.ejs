@@ -1,0 +1,75 @@
+<%- include('../partials/header') %>
+
+<section id="Showlink">
+  <div>airline:</div>
+  <div><%=flight.airline%></div>
+  <div>airport:</div>
+  <div><%=flight.airport%></div>
+  <div>flightNo:</div>
+  <div><%=flight.flightNo%></div>
+  <div>departs:</div>
+  <div><%=flight.departs.toLocaleString()%></div>
+</section>
+
+<h2 id="des">ADD Destination</h2>
+
+<form
+  id="Destination"
+  method="POST"
+  action="/flights/<%= flight._id%>/destinations"
+>
+  <label
+    >arrivalAirport:
+    <select name="arrivalAirport">
+      <option value="AUS">AUS</option>
+      <option value="DFW">DFW</option>
+      <option value="DEN">DEN</option>
+      <option value="LAX">LAX</option>
+      <option value="SAN">SAN</option>
+    </select>
+  </label>
+
+  <label>arrivalDate: <input type="date" , name="arrivalDate" /> </label>
+  <input type="submit" value="Add Destination" />
+</form>
+
+<% if (flight.destination.length) { %>
+<table>
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Date</th>
+      <th>ArrivalAirport</th>
+      <th>arrivalDate</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% flight.destination.forEach(function(d){ %>
+    <tr>
+      <td class="destination">
+        <img
+          alt="avatar"
+          src="<%= d.userAvatar%>"
+          referrerpolicy="no-referrer"
+        /><%=d.userName%>
+      </td>
+      <td><%= d.createdAt.toLocaleDateString()%></td>
+      <td><%= d.arrivalAirport%></td>
+      <td><%=d.arrivalDate%></td>
+      <td>
+        <% if(user?._id.equals(d.user)) { %>
+        <form action="/flights/destinations/<%= d._id%>?_method=DELETE" method="POST">
+          <button type="submit">X</button>
+        </form>
+
+        <% }%>
+      </td>
+    </tr>
+    <%})%>
+  </tbody>
+</table>
+<%} else { %>
+<h5>No destination Yet</h5>
+
+<%}%> <%- include('../partials/footer') %>

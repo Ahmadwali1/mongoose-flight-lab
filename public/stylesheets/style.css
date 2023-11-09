@@ -4,5 +4,48 @@ body {
 }
 
 a {
-  color: #00B7FF;
+  color: #00b7ff;
+}
+
+#Showlink {
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-gap: 1rem;
+  padding: 10%;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+}
+#Showlink div:nth-child(even) {
+  font-weight: bold;
+}
+
+#Destination input[type="submit"] {
+  display: grid;
+  width: 8rem;
+  margin-bottom: 2rem;
+}
+#des {
+  display: grid;
+  justify-content: center;
+  padding-bottom: 0%;
+  
+}
+#Destination {
+  display: grid;
+  grid-gap: 1rem;
+  padding: 5%;
+  align-items: center;
+  justify-content: center;
+  
+}
+
+.destination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.destination img {
+  border-radius: 50%;
+  height: 40px;
 }
